@@ -1,0 +1,21 @@
+# Function to calculate the cosine similarity between two 3D paths
+def cosine_similarity(fly_path, molecule_path):
+    # Convert paths into vectors for cosine similarity calculation
+    fly_vector = np.vstack((fly_path[0], fly_path[1], fly_path[2])).T
+    molecule_vector = np.vstack((molecule_path[0], molecule_path[1], molecule_path[2])).T
+    
+    # Flatten the 3D paths into 1D vectors for comparison
+    fly_flat = fly_vector.flatten()
+    molecule_flat = molecule_vector.flatten()
+    
+    # Compute the cosine similarity between the two vectors
+    dot_product = np.dot(fly_flat, molecule_flat)
+    norm_fly = np.linalg.norm(fly_flat)
+    norm_molecule = np.linalg.norm(molecule_flat)
+    
+    # Cosine similarity
+    return dot_product / (norm_fly * norm_molecule)
+
+# Calculate the cosine similarity between the fly and air molecule paths
+cosine_sim = cosine_similarity(fly_path, molecule_path)
+cosine_sim
